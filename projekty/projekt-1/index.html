@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 
-<head><script src="/portfolio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=portfolio/livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
-  <title>Projekt-1 | Marcin Ćwiek</title>
+  <title>Modelowanie długości zdrowego życia na świecie za pomocą regresji liniowej | Marcin Ćwiek</title>
   <meta name="viewport" content="width=device-width,minimum-scale=1">
   <meta name="description"
-    content="test-1">
+    content="Opis teorii:
+Analizy Regresji Liniowej to metoda statystyczna służąca do modelowania
+zależności między zmienną objaśniającą a jedną lub wieloma zmiennymi
+objaśniającymi. Jej celem jest oszacowanie równania, które pozwoli
+przewidzieć wartości Y na podstawie wartości zmiennych niezależnych.
+Wymagane biblioteki:
+library(readxl)
+library(tseries)
+library(knitr)
+library(carData)
+library(car)
+Wczytywanie danych:
+dane &lt;- read_excel(&#34;dane_projekt.xlsx&#34;)
+head(dane, 10) # Fragment danych
+## # A tibble: 10 × 11
+##    Country              Y    X1    X2    X3    X4    X5    X6    X7    X8     X9
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Afghanistan       63.2   0.1   193    37   2.5   3.9   5.5  63.6    43 0.0353
+##  2 Albania           78     6.8    15    62  18.8  10    21.7  19.3    94 0.668 
+##  3 Algeria           77.1   0.6    59    75  17.2  10.7  27.4  34.1    74 0.422 
+##  4 Andorra           84.1  12.3     3    77  33.3  16.5  25.6   9.5    93 4.21  
+##  5 Angola            63.1   7.8   350    39   2.1   5.4   8.2  40.3    41 0.300 
+##  6 Antigua and Bar…  76.5   9.4     2    72  27.7  11.3  18.9  21.1    78 1.89  
+##  7 Argentina         76.6   9.5    31    73  40.6  15.5  28.3  12.3    71 1.39  
+##  8 Armenia           76     4.7    23    69  44     5.7  20.2  45.5    94 0.677 
+##  9 Australia         83    10.4     7    87  41.3  16.2  29     7.3    94 6.39  
+## 10 Austria           81.6  11.9     5    82  52.9  15.7  20.1  12.9    84 5.20
+
+Opis danych:
+Y - Oczekiwana długość zdrowego życia w chwili urodzenia w latach
+X1 - Całowie spożycie alkoholu na osobę ( ≥ 15 lat) w litrach czystego
+alkoholu
+X2 - Przypadki gruźlicy na 100 tys. mieszkańców
+X3 - Wskaźnik dostępu do usług UHC (Universal Health Coverage - Narodowy
+fundusz zdrowia) w %
+X4 - Liczba lekarzy na 10 tys. mieszkańców
+X5 - Aktualne wydatki Państwa na służbę zdrowia, % wszystkich wydatków
+rządowych
+X6 - Odsetek występowania otyłości wśród osób dorosłych (18&#43; lat)
+X7 - Średnie roczne stężenia drobnych cząstek stałych pyłu (PM2,5) na
+obszarach miejskich (µg/m3)
+X8 - Odsetek populacji, który otrzymał 2 dawki szczepionki na odrę
+X9 - PKB na osobę w 10,000$">
   <meta name="generator" content="Hugo 0.143.1">
   
   
   
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
   
+  <meta name="author" content="Marcin Ćwiek">
   
 
   
-<link rel="stylesheet" href="/portfolio/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/portfolio/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
 
 
 
@@ -38,25 +81,72 @@
 
   <meta property="og:url" content="https://marcincwiek.github.io/portfolio/projekty/projekt-1/">
   <meta property="og:site_name" content="Marcin Ćwiek">
-  <meta property="og:title" content="Projekt-1">
-  <meta property="og:description" content="test-1">
+  <meta property="og:title" content="Modelowanie długości zdrowego życia na świecie za pomocą regresji liniowej">
+  <meta property="og:description" content="Opis teorii: Analizy Regresji Liniowej to metoda statystyczna służąca do modelowania zależności między zmienną objaśniającą a jedną lub wieloma zmiennymi objaśniającymi. Jej celem jest oszacowanie równania, które pozwoli przewidzieć wartości Y na podstawie wartości zmiennych niezależnych.
+Wymagane biblioteki: library(readxl) library(tseries) library(knitr) library(carData) library(car) Wczytywanie danych: dane &lt;- read_excel(&#34;dane_projekt.xlsx&#34;) head(dane, 10) # Fragment danych ## # A tibble: 10 × 11
+## Country Y X1 X2 X3 X4 X5 X6 X7 X8 X9
+## &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Afghanistan 63.2 0.1 193 37 2.5 3.9 5.5 63.6 43 0.0353
+## 2 Albania 78 6.8 15 62 18.8 10 21.7 19.3 94 0.668 ## 3 Algeria 77.1 0.6 59 75 17.2 10.7 27.4 34.1 74 0.422 ## 4 Andorra 84.1 12.3 3 77 33.3 16.5 25.6 9.5 93 4.21 ## 5 Angola 63.1 7.8 350 39 2.1 5.4 8.2 40.3 41 0.300 ## 6 Antigua and Bar… 76.5 9.4 2 72 27.7 11.3 18.9 21.1 78 1.89 ## 7 Argentina 76.6 9.5 31 73 40.6 15.5 28.3 12.3 71 1.39 ## 8 Armenia 76 4.7 23 69 44 5.7 20.2 45.5 94 0.677 ## 9 Australia 83 10.4 7 87 41.3 16.2 29 7.3 94 6.39 ## 10 Austria 81.6 11.9 5 82 52.9 15.7 20.1 12.9 84 5.20
+Opis danych: Y - Oczekiwana długość zdrowego życia w chwili urodzenia w latach
+X1 - Całowie spożycie alkoholu na osobę ( ≥ 15 lat) w litrach czystego alkoholu
+X2 - Przypadki gruźlicy na 100 tys. mieszkańców
+X3 - Wskaźnik dostępu do usług UHC (Universal Health Coverage - Narodowy fundusz zdrowia) w %
+X4 - Liczba lekarzy na 10 tys. mieszkańców
+X5 - Aktualne wydatki Państwa na służbę zdrowia, % wszystkich wydatków rządowych
+X6 - Odsetek występowania otyłości wśród osób dorosłych (18&#43; lat)
+X7 - Średnie roczne stężenia drobnych cząstek stałych pyłu (PM2,5) na obszarach miejskich (µg/m3)
+X8 - Odsetek populacji, który otrzymał 2 dawki szczepionki na odrę
+X9 - PKB na osobę w 10,000$">
   <meta property="og:locale" content="pl_PL">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projekty">
     <meta property="article:published_time" content="2025-02-16T15:42:12+01:00">
     <meta property="article:modified_time" content="2025-02-16T15:42:12+01:00">
 
-  <meta itemprop="name" content="Projekt-1">
-  <meta itemprop="description" content="test-1">
+  <meta itemprop="name" content="Modelowanie długości zdrowego życia na świecie za pomocą regresji liniowej">
+  <meta itemprop="description" content="Opis teorii: Analizy Regresji Liniowej to metoda statystyczna służąca do modelowania zależności między zmienną objaśniającą a jedną lub wieloma zmiennymi objaśniającymi. Jej celem jest oszacowanie równania, które pozwoli przewidzieć wartości Y na podstawie wartości zmiennych niezależnych.
+Wymagane biblioteki: library(readxl) library(tseries) library(knitr) library(carData) library(car) Wczytywanie danych: dane &lt;- read_excel(&#34;dane_projekt.xlsx&#34;) head(dane, 10) # Fragment danych ## # A tibble: 10 × 11
+## Country Y X1 X2 X3 X4 X5 X6 X7 X8 X9
+## &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Afghanistan 63.2 0.1 193 37 2.5 3.9 5.5 63.6 43 0.0353
+## 2 Albania 78 6.8 15 62 18.8 10 21.7 19.3 94 0.668 ## 3 Algeria 77.1 0.6 59 75 17.2 10.7 27.4 34.1 74 0.422 ## 4 Andorra 84.1 12.3 3 77 33.3 16.5 25.6 9.5 93 4.21 ## 5 Angola 63.1 7.8 350 39 2.1 5.4 8.2 40.3 41 0.300 ## 6 Antigua and Bar… 76.5 9.4 2 72 27.7 11.3 18.9 21.1 78 1.89 ## 7 Argentina 76.6 9.5 31 73 40.6 15.5 28.3 12.3 71 1.39 ## 8 Armenia 76 4.7 23 69 44 5.7 20.2 45.5 94 0.677 ## 9 Australia 83 10.4 7 87 41.3 16.2 29 7.3 94 6.39 ## 10 Austria 81.6 11.9 5 82 52.9 15.7 20.1 12.9 84 5.20
+Opis danych: Y - Oczekiwana długość zdrowego życia w chwili urodzenia w latach
+X1 - Całowie spożycie alkoholu na osobę ( ≥ 15 lat) w litrach czystego alkoholu
+X2 - Przypadki gruźlicy na 100 tys. mieszkańców
+X3 - Wskaźnik dostępu do usług UHC (Universal Health Coverage - Narodowy fundusz zdrowia) w %
+X4 - Liczba lekarzy na 10 tys. mieszkańców
+X5 - Aktualne wydatki Państwa na służbę zdrowia, % wszystkich wydatków rządowych
+X6 - Odsetek występowania otyłości wśród osób dorosłych (18&#43; lat)
+X7 - Średnie roczne stężenia drobnych cząstek stałych pyłu (PM2,5) na obszarach miejskich (µg/m3)
+X8 - Odsetek populacji, który otrzymał 2 dawki szczepionki na odrę
+X9 - PKB na osobę w 10,000$">
   <meta itemprop="datePublished" content="2025-02-16T15:42:12+01:00">
   <meta itemprop="dateModified" content="2025-02-16T15:42:12+01:00">
-  <meta itemprop="wordCount" content="1">
+  <meta itemprop="wordCount" content="1900">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Projekt-1">
-  <meta name="twitter:description" content="test-1">
+  <meta name="twitter:title" content="Modelowanie długości zdrowego życia na świecie za pomocą regresji liniowej">
+  <meta name="twitter:description" content="Opis teorii: Analizy Regresji Liniowej to metoda statystyczna służąca do modelowania zależności między zmienną objaśniającą a jedną lub wieloma zmiennymi objaśniającymi. Jej celem jest oszacowanie równania, które pozwoli przewidzieć wartości Y na podstawie wartości zmiennych niezależnych.
+Wymagane biblioteki: library(readxl) library(tseries) library(knitr) library(carData) library(car) Wczytywanie danych: dane &lt;- read_excel(&#34;dane_projekt.xlsx&#34;) head(dane, 10) # Fragment danych ## # A tibble: 10 × 11
+## Country Y X1 X2 X3 X4 X5 X6 X7 X8 X9
+## &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Afghanistan 63.2 0.1 193 37 2.5 3.9 5.5 63.6 43 0.0353
+## 2 Albania 78 6.8 15 62 18.8 10 21.7 19.3 94 0.668 ## 3 Algeria 77.1 0.6 59 75 17.2 10.7 27.4 34.1 74 0.422 ## 4 Andorra 84.1 12.3 3 77 33.3 16.5 25.6 9.5 93 4.21 ## 5 Angola 63.1 7.8 350 39 2.1 5.4 8.2 40.3 41 0.300 ## 6 Antigua and Bar… 76.5 9.4 2 72 27.7 11.3 18.9 21.1 78 1.89 ## 7 Argentina 76.6 9.5 31 73 40.6 15.5 28.3 12.3 71 1.39 ## 8 Armenia 76 4.7 23 69 44 5.7 20.2 45.5 94 0.677 ## 9 Australia 83 10.4 7 87 41.3 16.2 29 7.3 94 6.39 ## 10 Austria 81.6 11.9 5 82 52.9 15.7 20.1 12.9 84 5.20
+Opis danych: Y - Oczekiwana długość zdrowego życia w chwili urodzenia w latach
+X1 - Całowie spożycie alkoholu na osobę ( ≥ 15 lat) w litrach czystego alkoholu
+X2 - Przypadki gruźlicy na 100 tys. mieszkańców
+X3 - Wskaźnik dostępu do usług UHC (Universal Health Coverage - Narodowy fundusz zdrowia) w %
+X4 - Liczba lekarzy na 10 tys. mieszkańców
+X5 - Aktualne wydatki Państwa na służbę zdrowia, % wszystkich wydatków rządowych
+X6 - Odsetek występowania otyłości wśród osób dorosłych (18&#43; lat)
+X7 - Średnie roczne stężenia drobnych cząstek stałych pyłu (PM2,5) na obszarach miejskich (µg/m3)
+X8 - Odsetek populacji, który otrzymał 2 dawki szczepionki na odrę
+X9 - PKB na osobę w 10,000$">
 
   
-</head><body class="ma0 avenir bg-near-white development">
+  
+  
+</head><body class="ma0 avenir bg-near-white production">
 
   
    
@@ -116,7 +206,7 @@
 </nav>
       <div class="tc-l pv6 ph3 ph4-ns">
         
-          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Projekt-1</div>
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Modelowanie długości zdrowego życia na świecie za pomocą regresji liniowej</div>
           
         
       </div>
@@ -135,7 +225,10 @@
           
         Projekty
       </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Projekt-1</h1>
+<h1 class="f1 athelas mt3 mb1">Modelowanie długości zdrowego życia na świecie za pomocą regresji liniowej</h1>
+      
+      <p class="tracked"><strong>Marcin Ćwiek</strong>
+      </p>
       
       
       
@@ -145,7 +238,311 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>test-1</p>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="opis-teorii">Opis teorii:</h2>
+<p>Analizy Regresji Liniowej to metoda statystyczna służąca do modelowania
+zależności między zmienną objaśniającą a jedną lub wieloma zmiennymi
+objaśniającymi. Jej celem jest oszacowanie równania, które pozwoli
+przewidzieć wartości Y na podstawie wartości zmiennych niezależnych.</p>
+<h2 id="wymagane-biblioteki">Wymagane biblioteki:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(readxl)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(tseries)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(knitr)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(carData)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(car)
+</span></span></code></pre></div><h2 id="wczytywanie-danych">Wczytywanie danych:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dane <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_excel</span>(<span style="color:#e6db74">&#34;dane_projekt.xlsx&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">head</span>(dane, <span style="color:#ae81ff">10</span>) <span style="color:#75715e"># Fragment danych</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 10 × 11
+##    Country              Y    X1    X2    X3    X4    X5    X6    X7    X8     X9
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Afghanistan       63.2   0.1   193    37   2.5   3.9   5.5  63.6    43 0.0353
+##  2 Albania           78     6.8    15    62  18.8  10    21.7  19.3    94 0.668 
+##  3 Algeria           77.1   0.6    59    75  17.2  10.7  27.4  34.1    74 0.422 
+##  4 Andorra           84.1  12.3     3    77  33.3  16.5  25.6   9.5    93 4.21  
+##  5 Angola            63.1   7.8   350    39   2.1   5.4   8.2  40.3    41 0.300 
+##  6 Antigua and Bar…  76.5   9.4     2    72  27.7  11.3  18.9  21.1    78 1.89  
+##  7 Argentina         76.6   9.5    31    73  40.6  15.5  28.3  12.3    71 1.39  
+##  8 Armenia           76     4.7    23    69  44     5.7  20.2  45.5    94 0.677 
+##  9 Australia         83    10.4     7    87  41.3  16.2  29     7.3    94 6.39  
+## 10 Austria           81.6  11.9     5    82  52.9  15.7  20.1  12.9    84 5.20
+</code></pre>
+<h2 id="opis-danych">Opis danych:</h2>
+<p>Y - Oczekiwana długość zdrowego życia w chwili urodzenia w latach<br>
+X1 - Całowie spożycie alkoholu na osobę ( ≥ 15 lat) w litrach czystego
+alkoholu<br>
+X2 - Przypadki gruźlicy na 100 tys. mieszkańców<br>
+X3 - Wskaźnik dostępu do usług UHC (Universal Health Coverage - Narodowy
+fundusz zdrowia) w %<br>
+X4 - Liczba lekarzy na 10 tys. mieszkańców<br>
+X5 - Aktualne wydatki Państwa na służbę zdrowia, % wszystkich wydatków
+rządowych<br>
+X6 - Odsetek występowania otyłości wśród osób dorosłych (18+ lat)<br>
+X7 - Średnie roczne stężenia drobnych cząstek stałych pyłu (PM2,5) na
+obszarach miejskich (µg/m3)<br>
+X8 - Odsetek populacji, który otrzymał 2 dawki szczepionki na odrę<br>
+X9 - PKB na osobę w 10,000$</p>
+<h2 id="wstępny-model-liniowy">Wstępny model liniowy:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(Y<span style="color:#f92672">~</span>X1<span style="color:#f92672">+</span>X2<span style="color:#f92672">+</span>X3<span style="color:#f92672">+</span>X4<span style="color:#f92672">+</span>X5<span style="color:#f92672">+</span>X6<span style="color:#f92672">+</span>X7<span style="color:#f92672">+</span>X8<span style="color:#f92672">+</span>X9, data <span style="color:#f92672">=</span> dane)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">summary</span>(model1)
+</span></span></code></pre></div><pre><code>## 
+## Call:
+## lm(formula = Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9, 
+##     data = dane)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.5164 -1.6464 -0.1534  1.5441  7.6249 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 54.621623   1.655217  33.000  &lt; 2e-16 ***
+## X1          -0.036880   0.065728  -0.561  0.57542    
+## X2          -0.013370   0.001798  -7.435 3.91e-12 ***
+## X3           0.266153   0.030104   8.841 7.82e-16 ***
+## X4           0.051931   0.019376   2.680  0.00803 ** 
+## X5           0.162629   0.060190   2.702  0.00754 ** 
+## X6          -0.042316   0.020958  -2.019  0.04493 *  
+## X7           0.012849   0.014450   0.889  0.37508    
+## X8          -0.001889   0.011092  -0.170  0.86498    
+## X9           0.231289   0.095526   2.421  0.01645 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.819 on 183 degrees of freedom
+## Multiple R-squared:  0.8538, Adjusted R-squared:  0.8466 
+## F-statistic: 118.8 on 9 and 183 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+<p>Zmienne objaśniające X1, X7 oraz X8 nie posiadają istotnego wpływu na
+zmienną objaśnianą. Wymagane jest przeprowadzenie wstecznej regresji
+krokowej.</p>
+<h2 id="regresja-krokowa-w-tył">Regresja krokowa w tył:</h2>
+<p>Krok 1: Tworzymy nowy model, pomijając zmienną X8, która charakteryzuje
+się największą wartością p-value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(Y<span style="color:#f92672">~</span>X1<span style="color:#f92672">+</span>X2<span style="color:#f92672">+</span>X3<span style="color:#f92672">+</span>X4<span style="color:#f92672">+</span>X5<span style="color:#f92672">+</span>X6<span style="color:#f92672">+</span>X7<span style="color:#f92672">+</span>X9, data <span style="color:#f92672">=</span> dane)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">summary</span>(model2)
+</span></span></code></pre></div><pre><code>## 
+## Call:
+## lm(formula = Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7 + X9, data = dane)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.5358 -1.5818 -0.1561  1.5626  7.5619 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 54.650728   1.642019  33.283  &lt; 2e-16 ***
+## X1          -0.035915   0.065310  -0.550  0.58304    
+## X2          -0.013368   0.001794  -7.454 3.44e-12 ***
+## X3           0.263455   0.025530  10.320  &lt; 2e-16 ***
+## X4           0.051766   0.019301   2.682  0.00798 ** 
+## X5           0.163585   0.059770   2.737  0.00681 ** 
+## X6          -0.042706   0.020777  -2.055  0.04125 *  
+## X7           0.012764   0.014404   0.886  0.37669    
+## X9           0.233528   0.094367   2.475  0.01424 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.811 on 184 degrees of freedom
+## Multiple R-squared:  0.8538, Adjusted R-squared:  0.8474 
+## F-statistic: 134.3 on 8 and 184 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+<p>Krok 2: Nowy model nadal posiada nieistotne zmienne. W następnym kroku
+usuwamy zmienną objaśniającą X1.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(Y<span style="color:#f92672">~</span>X2<span style="color:#f92672">+</span>X3<span style="color:#f92672">+</span>X4<span style="color:#f92672">+</span>X5<span style="color:#f92672">+</span>X6<span style="color:#f92672">+</span>X7<span style="color:#f92672">+</span>X9, data <span style="color:#f92672">=</span> dane)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">summary</span>(model3)
+</span></span></code></pre></div><pre><code>## 
+## Call:
+## lm(formula = Y ~ X2 + X3 + X4 + X5 + X6 + X7 + X9, data = dane)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.5250 -1.6319 -0.1964  1.6484  7.6514 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 54.467048   1.604654  33.943  &lt; 2e-16 ***
+## X2          -0.013409   0.001789  -7.496 2.64e-12 ***
+## X3           0.262941   0.025465  10.326  &lt; 2e-16 ***
+## X4           0.049069   0.018632   2.634  0.00916 ** 
+## X5           0.159417   0.059175   2.694  0.00771 ** 
+## X6          -0.040457   0.020332  -1.990  0.04808 *  
+## X7           0.015140   0.013715   1.104  0.27107    
+## X9           0.231318   0.094104   2.458  0.01489 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.806 on 185 degrees of freedom
+## Multiple R-squared:  0.8536, Adjusted R-squared:  0.848 
+## F-statistic:   154 on 7 and 185 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+<p>Krok 3: Usuwamy zmienną X7, wartość jej p-value przekracza zadany poziom
+istotności α = 0.05.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model4 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(Y<span style="color:#f92672">~</span>X2<span style="color:#f92672">+</span>X3<span style="color:#f92672">+</span>X4<span style="color:#f92672">+</span>X5<span style="color:#f92672">+</span>X6<span style="color:#f92672">+</span>X9, data <span style="color:#f92672">=</span> dane)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">summary</span>(model4)
+</span></span></code></pre></div><pre><code>## 
+## Call:
+## lm(formula = Y ~ X2 + X3 + X4 + X5 + X6 + X9, data = dane)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.5390 -1.4604 -0.1344  1.6572  7.9361 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 55.422015   1.352295  40.984  &lt; 2e-16 ***
+## X2          -0.013638   0.001778  -7.672  9.2e-13 ***
+## X3           0.260372   0.025373  10.262  &lt; 2e-16 ***
+## X4           0.046864   0.018536   2.528   0.0123 *  
+## X5           0.141392   0.056911   2.484   0.0139 *  
+## X6          -0.045489   0.019826  -2.294   0.0229 *  
+## X9           0.226833   0.094071   2.411   0.0169 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.808 on 186 degrees of freedom
+## Multiple R-squared:  0.8526, Adjusted R-squared:  0.8478 
+## F-statistic: 179.3 on 6 and 186 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+<p>Każda zmienna objaśniająca posiada p-value &lt; 0.05, oznacza to że każda
+z nich posiada istotny wpływ na zmienną objaśniającą. Na tym kroku
+zakończymy regresje krokową w tył.</p>
+<h2 id="diagnostyka-dopasowania-modelu">Diagnostyka dopasowania modelu:</h2>
+<p>Poszukujemy obserwacji wpływowych, które znacznie wpływają na
+dopasowanie modelu.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dffits <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dffits</span>(model4)
+</span></span><span style="display:flex;"><span>wplywowe <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">which</span>(<span style="color:#a6e22e">abs</span>(dffits) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sqrt</span>(<span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">193</span>))
+</span></span></code></pre></div><p>Obserwacje wpływowe: 14, 40, 44, 59, 64, 74, 92, 97, 133, 136, 172.</p>
+<p>Następnie szukamy obserwacji odstających, nie pasujących do wzorca
+sugerowanego przez pozostałe punkty. Posiadających nietypową wartość
+zmiennej objaśnianej Y.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>rstud <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rstandard</span>(model4)
+</span></span><span style="display:flex;"><span>odstajace <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">which</span>(<span style="color:#a6e22e">abs</span>(rstud) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><p>Obserwacje odstające: 14, 23, 40, 59, 74, 92, 97, 133, 136, 172, 178,
+193.</p>
+<p>Na koniec szukamy obserwacji dźwigniowych:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>hatv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hatvalues</span>(model4)
+</span></span><span style="display:flex;"><span>dzwigniowe <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">which</span>(hatv <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">193</span>)
+</span></span></code></pre></div><p>Obserwacje dźwigniowe: 40, 44, 47, 83, 87, 91, 97, 101, 108, 113, 114,
+120, 131, 149, 161, 179.</p>
+<p>Na zakończenie usuwamy obserwacje, które są wpływowe i dźwigniowe lub
+odstające.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>nietypowe <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">which</span>((<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">193</span> <span style="color:#f92672">%in%</span> wplywowe) <span style="color:#f92672">&amp;</span> ((<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">193</span> <span style="color:#f92672">%in%</span> dzwigniowe) <span style="color:#f92672">|</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">193</span> <span style="color:#f92672">%in%</span> odstajace)))
+</span></span><span style="display:flex;"><span>dane2 <span style="color:#f92672">&lt;-</span> dane[<span style="color:#f92672">-</span>nietypowe, ]
+</span></span></code></pre></div><p>Usunięte obserwacje: 14, 40, 44, 59, 74, 92, 97, 133, 136, 172.</p>
+<p>Z nowo otrzymanego zestawu danych tworzymy nowy model regresji liniowej.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model5 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(Y<span style="color:#f92672">~</span>X2<span style="color:#f92672">+</span>X3<span style="color:#f92672">+</span>X4<span style="color:#f92672">+</span>X5<span style="color:#f92672">+</span>X6<span style="color:#f92672">+</span>X9, data <span style="color:#f92672">=</span> dane2)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">summary</span>(model5)
+</span></span></code></pre></div><pre><code>## 
+## Call:
+## lm(formula = Y ~ X2 + X3 + X4 + X5 + X6 + X9, data = dane2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.9742 -1.3356 -0.2472  1.4288  5.5274 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 54.60175    1.12517  48.528  &lt; 2e-16 ***
+## X2          -0.01349    0.00163  -8.279 3.01e-14 ***
+## X3           0.27144    0.02126  12.770  &lt; 2e-16 ***
+## X4           0.04720    0.01622   2.911  0.00407 ** 
+## X5           0.17160    0.04663   3.680  0.00031 ***
+## X6          -0.05567    0.01695  -3.284  0.00124 ** 
+## X9           0.18060    0.07774   2.323  0.02132 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.274 on 176 degrees of freedom
+## Multiple R-squared:  0.899,  Adjusted R-squared:  0.8956 
+## F-statistic: 261.2 on 6 and 176 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+<h2 id="ocena-modeli">Ocena modeli:</h2>
+<p>Ocena utworzonych modeli na podstawie kryteriów Akaike oraz BIC.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">suppressWarnings</span>(<span style="color:#a6e22e">AIC</span>(model1, model2, model3, model4, model5))
+</span></span></code></pre></div><pre><code>##        df      AIC
+## model1 11 959.4407
+## model2 10 957.4713
+## model3  9 955.7883
+## model4  8 955.0554
+## model5  8 828.9266
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">suppressWarnings</span>(<span style="color:#a6e22e">BIC</span>(model1, model2, model3, model4, model5))
+</span></span></code></pre></div><pre><code>##        df      BIC
+## model1 11 995.3303
+## model2 10 990.0982
+## model3  9 985.1525
+## model4  8 981.1569
+## model5  8 854.6025
+</code></pre>
+<p>Model 5 osiągnięty w wyniku regresji wstecznej oraz usunięciu
+nietypowych obserwacji posiada najmniejszą wartości dla obu kryteriów.
+Oznacza to, że najlepiej dopasowuje się do danych spośród porównywanych
+modeli.</p>
+<h2 id="postać-modelu">Postać modelu:</h2>
+<p>Postać teoretyczna modelu:  y = β0 + β2x2 + β3x3 + β4x4 + β5x5 + β6x6 +
+β9x9 + ε</p>
+<p>Postać oszacowana modelu: y^ = b0 + b2x2 + b3x3 + b4x4 + b5x5 + b6x6 +
+b9x9</p>
+<p>y^ = 54.602 - 0.013<em>x2 + 0.271</em>x3 + 0.047<em>x4 + 0.172</em>x5 - 0.056<em>x6 +
+0.181</em>x9</p>
+<h2 id="interpretacja-parametrów">Interpretacja parametrów:</h2>
+<p>Wszystkie interpretacje zakładają, że wartość pozostałych zmiennych
+pozostanie bez zmian.</p>
+<p>b2 - Jeśli ilość przypadków gruźlicy wzrośnie o 1 osobę na 100tyś
+mieszkańców, to przewidywana długość zdrowego życia w chwili urodzenia
+spadnie średnio o 0.013 roku.</p>
+<p>b3 - Jeśli wartość wskaźnika dostępu do usług UHC wzrośnie o 1%, to
+przewidywana długość zdrowego życia w chwili urodzenia wzrośnie o
+średnio 0.271 roku.</p>
+<p>b4 - Jeśli ilość lekarzy na 10tyś mieszkańców wzrośnie o 1 jednostkę, to
+przewidywana długość zdrowego życia w chwili urodzenia wzrośnie o
+średnio 0.047 roku.</p>
+<p>b5 - Jeśli wartość wydatków rządowych na służbę zdrowia wzrośnie o 1%,
+to przewidywana długość zdrowego życia w chwili urodzenia wzrośnie o
+średnio 0.172 roku.</p>
+<p>b6 - Jeśli odsetek występowania otyłości wśród dorosłych zwiększy się o
+1%, to przewidywana długość zdrowego życia w chwili urodzenia spadnie o
+średnio 0.056 roku.</p>
+<p>b9 - Jeśli średnia wartość PKB na osobę wzrośnie o 10000$, to
+przewidywana długość zdrowego życia w chwili urodzenia wzrośnie o
+średnio 0.181 roku</p>
+<h2 id="dopasowanie-modelu">Dopasowanie modelu:</h2>
+<p>Współczynnik determinacji R² = 0.8990281. Oznacza to, że 90% zmienności
+zmiennej zależnej jest wyjaśniona przez zmienne niezależne.</p>
+<h2 id="badanie-normalności">Badanie normalności:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>re <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">resid</span>(model5)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plot</span>(re);<span style="color:#a6e22e">abline</span>(h<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,lty<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><p><img src="images/figure1.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">qqnorm</span>(re);<span style="color:#a6e22e">qqline</span>(re)
+</span></span></code></pre></div><p><img src="C:%5CUsers%5Cmarci%5CGitHub%5CPortfolio%5Cpublic%5Cimages%5Cfigure2.png" alt=""></p>
+<p>Reszty na pierwszym wykresie są losowo rozproszone wokół osi, nie tworzą
+żadnej widocznej struktury. Punkty na wykresie QQ nie odbiegają w
+znaczący sposób od prostej. Na podstawie wykresów możemy założyć, że
+reszty posiadają rozkład normalny oraz dane zostały poprawnie dobrane do
+naszego modelu. Dla pewności wykonujemy dodatkowo test Jarque-Bery.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">jarque.bera.test</span>(re)
+</span></span></code></pre></div><pre><code>## 
+##  Jarque Bera Test
+## 
+## data:  re
+## X-squared = 0.43873, df = 2, p-value = 0.803
+</code></pre>
+<p>H0: Reszty pochodzą z populacji o rozkładzie normalnym<br>
+H1: Reszty nie pochodzą z populacji o rozkładzie normalnym</p>
+<p>p-value = 0.803, oznacza to, że nie ma podstaw do odrzucenia hipotezy
+zerowej o rozkładzie normalnym reszt.</p>
+<h2 id="badanie-współliniowości">Badanie współliniowości</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">vif</span>(model5)
+</span></span></code></pre></div><pre><code>##       X2       X3       X4       X5       X6       X9 
+## 1.496010 3.788013 2.720345 1.959553 1.196340 1.671101
+</code></pre>
+<p>Żadna ze zmiennych nie posiada wartości VIF &gt; 5. Oznacza to, że model
+jest stabilny oraz nie wymaga wprowadzenia dodatkowych poprawek.</p>
+<h2 id="wnioski-praktyczne">Wnioski praktyczne</h2>
+<p>Wyniki sugerują, że zwiększenie wydatków na opiekę zdrowotną i liczby
+lekarzy może istotnie wydłużyć zdrowe życie. Natomiast wysoki poziom
+otyłości jest silnie oraz negatywnie skorelowany z oczekiwaną długością
+zdrowego życia, co podkreśla konieczność działań prewencyjnych.</p>
 <ul class="pa0">
   
 </ul>
