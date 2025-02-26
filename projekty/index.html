@@ -148,44 +148,6 @@
 zależności między zmienną objaśniającą a jedną lub wieloma zmiennymi
 objaśniającymi. Jej celem jest oszacowanie równania, które pozwoli
 przewidzieć wartości Y na podstawie wartości zmiennych niezależnych.</p>
-<h2 id="wymagane-biblioteki">Wymagane biblioteki:</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(readxl)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(tseries)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(knitr)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(carData)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(car)
-</span></span></code></pre></div><h2 id="wczytywanie-danych">Wczytywanie danych:</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dane <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_excel</span>(<span style="color:#e6db74">&#34;dane_projekt.xlsx&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">head</span>(dane, <span style="color:#ae81ff">10</span>) <span style="color:#75715e"># Fragment danych</span>
-</span></span></code></pre></div><pre><code>## # A tibble: 10 × 11
-##    Country              Y    X1    X2    X3    X4    X5    X6    X7    X8     X9
-##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Afghanistan       63.2   0.1   193    37   2.5   3.9   5.5  63.6    43 0.0353
-##  2 Albania           78     6.8    15    62  18.8  10    21.7  19.3    94 0.668 
-##  3 Algeria           77.1   0.6    59    75  17.2  10.7  27.4  34.1    74 0.422 
-##  4 Andorra           84.1  12.3     3    77  33.3  16.5  25.6   9.5    93 4.21  
-##  5 Angola            63.1   7.8   350    39   2.1   5.4   8.2  40.3    41 0.300 
-##  6 Antigua and Bar…  76.5   9.4     2    72  27.7  11.3  18.9  21.1    78 1.89  
-##  7 Argentina         76.6   9.5    31    73  40.6  15.5  28.3  12.3    71 1.39  
-##  8 Armenia           76     4.7    23    69  44     5.7  20.2  45.5    94 0.677 
-##  9 Australia         83    10.4     7    87  41.3  16.2  29     7.3    94 6.39  
-## 10 Austria           81.6  11.9     5    82  52.9  15.7  20.1  12.9    84 5.20
-</code></pre>
-<h2 id="opis-danych">Opis danych:</h2>
-<p>Y - Oczekiwana długość zdrowego życia w chwili urodzenia w latach<br>
-X1 - Całowie spożycie alkoholu na osobę ( ≥ 15 lat) w litrach czystego
-alkoholu<br>
-X2 - Przypadki gruźlicy na 100 tys. mieszkańców<br>
-X3 - Wskaźnik dostępu do usług UHC (Universal Health Coverage - Narodowy
-fundusz zdrowia) w %<br>
-X4 - Liczba lekarzy na 10 tys. mieszkańców<br>
-X5 - Aktualne wydatki Państwa na służbę zdrowia, % wszystkich wydatków
-rządowych<br>
-X6 - Odsetek występowania otyłości wśród osób dorosłych (18+ lat)<br>
-X7 - Średnie roczne stężenia drobnych cząstek stałych pyłu (PM2,5) na
-obszarach miejskich (µg/m3)<br>
-X8 - Odsetek populacji, który otrzymał 2 dawki szczepionki na odrę<br>
-X9 - PKB na osobę w 10,000$</p>
     </div>
     <a href="/portfolio/projekty/projekt-1/"
       class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">Zobacz więcej</a>
